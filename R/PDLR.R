@@ -20,11 +20,11 @@ PDLR <- function(X1, X2, K = 1) {
   if (nrow(X1) != nrow(X2) | ncol(X1) != ncol(X2)) stop("Dimensions of X1 and X2 must be identical")
 
   if (K == 1) {
-    n1 <- nn2(X1, eps = 0, k = 2)$nn.dists[, 2]
-    n2 <- nn2(X2, X1, eps = 0, k = 2)$nn.dists[, 1]
+    n1 <- RANN::nn2(X1, eps = 0, k = 2)$nn.dists[, 2]
+    n2 <- RANN::nn2(X2, X1, eps = 0, k = 2)$nn.dists[, 1]
   } else {
-    n1 <- rowMeans(nn2(X1, eps = 0, k = K+1)$nn.dists[, 2:(K+1)])
-    n2 <- rowMeans(nn2(X2, X1, eps = 0, k = K)$nn.dists[, 1:K])
+    n1 <- rowMeans(RANN::nn2(X1, eps = 0, k = K+1)$nn.dists[, 2:(K+1)])
+    n2 <- rowMeans(RANN::nn2(X2, X1, eps = 0, k = K)$nn.dists[, 1:K])
 
   }
   ratio <- log10(n2/n1)
