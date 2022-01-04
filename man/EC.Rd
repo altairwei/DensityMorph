@@ -7,15 +7,20 @@
 EC(X, Y)
 }
 \arguments{
-\item{X}{Matrix consisting of latent space coordinates (rows) of each single cell sample}
+\item{X}{Matrix consisting of latent space coordinates (rows) of each single
+cell sample}
 
-\item{Y}{Vector consisting of univariate quantities that are a characteristic of each single cell sample}
+\item{Y}{Vector consisting of univariate quantities that are a
+characteristic of each single cell sample}
 }
 \value{
-A list containing the projection of the EC in the latent space, and the percentage of Y's variance explained by the EC
+A list containing the projection of the EC in the latent space, and
+the percentage of Y's variance explained by the EC
 }
 \description{
-Takes the latent space coordinates of a set of single cell samples (after using DensityMorph), and a univariate quantity from each sample, and constructs an explanatory component (EC)
+Takes the latent space coordinates of a set of single cell samples
+(after using DensityMorph), and a univariate quantity from each sample, and
+constructs an explanatory component (EC)
 }
 \examples{
 p <- 3

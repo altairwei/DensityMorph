@@ -1,8 +1,17 @@
-#' Takes the latent space coordinates of a set of single cell samples (after using DensityMorph), and a univariate quantity from each sample, and constructs an explanatory component (EC)
+#' Takes the latent space coordinates of a set of single cell samples
+#' (after using DensityMorph), and a univariate quantity from each sample, and
+#' constructs an explanatory component (EC)
+#'
 #' @title Calculate explanatory components
-#' @param X Matrix consisting of latent space coordinates (rows) of each single cell sample
-#' @param Y Vector consisting of univariate quantities that are a characteristic of each single cell sample
-#' @return A list containing the projection of the EC in the latent space, and the percentage of Y's variance explained by the EC
+#'
+#' @param X Matrix consisting of latent space coordinates (rows) of each single
+#' cell sample
+#' @param Y Vector consisting of univariate quantities that are a
+#' characteristic of each single cell sample
+#'
+#' @return A list containing the projection of the EC in the latent space, and
+#' the percentage of Y's variance explained by the EC
+#'
 #' @examples
 #' p <- 3
 #' Ntype <- 10

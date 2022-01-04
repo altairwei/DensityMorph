@@ -1,9 +1,18 @@
-#' Calculates the paired density logratio (PDLR) between two multi-dimensional sets of points
+#' Calculates the paired density logratio (PDLR) between two multi-dimensional
+#' sets of points
+#'
 #' @title Paired density logratio
-#' @param X1 A matrix of points, with each row corresponding to a point's coordinates in a multi-dimensional real space.
-#' @param X2 A second matrix of points, to be compared to X1. The number of columns and rows must be equal to those of X1.
-#' @param K The number of the first K nearest neighbours (NN) to average over, defaults to K = 1
-#' @return A set of real numbers corresponding to the log-10 ratio of the cross NN distances to the self NN distances
+#'
+#' @param X1 A matrix of points, with each row corresponding to a point's
+#' coordinates in a multi-dimensional real space.
+#' @param X2 A second matrix of points, to be compared to X1. The number of
+#' columns and rows must be equal to those of X1.
+#' @param K The number of the first K nearest neighbours (NN) to average over,
+#' defaults to K = 1
+#'
+#' @return A set of real numbers corresponding to the log-10 ratio of the cross
+#' NN distances to the self NN distances
+#'
 #' @export
 
 PDLR <- function(X1, X2, K = 1) {

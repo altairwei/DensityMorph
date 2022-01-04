@@ -7,49 +7,57 @@
 latent_space(D, Xref, K = 1)
 }
 \arguments{
-\item{D}{A list of matrices of identical dimension. The points are stored as rows in each matrix.}
+\item{D}{A list of matrices of identical dimension. The points are stored as
+rows in each matrix.}
 
 \item{Xref}{A pre-calculated self-PDLR distribution}
 
-\item{K}{The number of the first K nearest neighbours (NN) to average over, defaults to K = 1}
+\item{K}{The number of the first K nearest neighbours (NN) to average over,
+defaults to K = 1}
 }
 \value{
-A named list containing a symmetrical matrix containing the quasi-distances calculated using DensityMorph (the dimension is equal to the number of matrices in D) and the latent space with coordinates stored in rows
+A named list containing a symmetrical matrix containing the
+quasi-distances calculated using DensityMorph (the dimension is equal to the
+number of matrices in D) and the latent space with coordinates stored in rows
 }
 \description{
-Given a set of matrices with idential dimension, calculate a pairwise matrix of quasi-distances between them using DensityMorph
+Given a set of matrices with idential dimension, calculate a pairwise matrix
+of quasi-distances between them using DensityMorph
 }
 \examples{
 p <- 3
 Ntype <- 10
+
 set.seed(21)
 library(mvtnorm)
 experiment <- replicate(Ntype, {
   nclus <- 5;
- clus_means <- t(sapply(1:nclus, function(i) runif(p, 0, 5)));
- clus_var <- runif(nclus, 1, 3);
- clus_cor <- runif(nclus, -0.3, 0.3);
- clus_count <- runif(nclus, 1, 10);
- N <- rmultinom(1, 1000, clus_count);
+  clus_means <- t(sapply(1:nclus, function(i) runif(p, 0, 5)));
+  clus_var <- runif(nclus, 1, 3);
+  clus_cor <- runif(nclus, -0.3, 0.3);
+  clus_count <- runif(nclus, 1, 10);
+  N <- rmultinom(1, 1000, clus_count);
 
- sample <- lapply(1:nclus, function(i) {
-   M <- as.vector(rmvnorm(1, mean = clus_means[i, ], sigma = diag(rep(0.1, p))))
-   S <- rnorm(1, mean = clus_var[i], sd = 0.05)
-   C <- rnorm(1, mean = clus_cor[i], sd = 0.05)
-   sig <- matrix(C, nrow = p, ncol = p)
-   diag(sig) <- S
-   pop <- rmvnorm(N[i], M, sig)
-   return(list(pop = pop, M = M, S = S, C = C, N = N[i]))
- }
- );
- s <- mapply(function(x) x$pop, sample, SIMPLIFY = FALSE);
- s <- do.call(rbind, s);
- params <- data.frame(t(mapply(function(x) unlist(x[2:5]), sample)));
- reps <- list(data = s, params = params)
+  sample <- lapply(1:nclus, function(i) {
+    M <- as.vector(rmvnorm(1,
+      mean = clus_means[i, ], sigma = diag(rep(0.1, p))))
+    S <- rnorm(1, mean = clus_var[i], sd = 0.05)
+    C <- rnorm(1, mean = clus_cor[i], sd = 0.05)
+    sig <- matrix(C, nrow = p, ncol = p)
+    diag(sig) <- S
+    pop <- rmvnorm(N[i], M, sig)
+    return(list(pop = pop, M = M, S = S, C = C, N = N[i]))
+  }
+  );
+  s <- mapply(function(x) x$pop, sample, SIMPLIFY = FALSE);
+  s <- do.call(rbind, s);
+  params <- data.frame(t(mapply(function(x) unlist(x[2:5]), sample)));
+  reps <- list(data = s, params = params)
 
 }, simplify = FALSE
 )
 expr_data <- mapply(function(x) x$data, experiment, SIMPLIFY = FALSE)
+
 Xref <- reference_distribution(p, 10^5, 10^3)
 # Dimension reduction should be performed at this step if necessary.
 # Dimension should preferably be reduced to 3,4 or 5 to take maximum advantage of the time saving.

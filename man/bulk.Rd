@@ -9,15 +9,22 @@ bulk(D, threshold, marker_names)
 \arguments{
 \item{D}{A list of single cell datasets of equal dimension}
 
-\item{threshold}{A vector of expression thresholds, one for each marker, above which a cell is deemed to be positive for that marker. Currently you need to supply a threshold for each marker, there is no functionality to select a subset of markers}
+\item{threshold}{A vector of expression thresholds, one for each marker,
+above which a cell is deemed to be positive for that marker. Currently you
+need to supply a threshold for each marker, there is no functionality to
+select a subset of markers}
 
 \item{marker_names}{A vector of marker names, of equal length to threshold.}
 }
 \value{
-A named list of matrices containing 'bulk' measurements for each sample and marker/marker pair.
+A named list of matrices containing 'bulk' measurements for each
+sample and marker/marker pair.
 }
 \description{
-Takes a set of single cell samples and extracts three types of univariate 'bulk' measurements from them: proportion of cells positive for each marker, average MFI/expression of the positive cells for each marker, and the log-odds ratio of double positive cells for each marker pair.
+Takes a set of single cell samples and extracts three types of univariate
+'bulk' measurements from them: proportion of cells positive for each marker,
+average MFI/expression of the positive cells for each marker, and the
+log-odds ratio of double positive cells for each marker pair.
 }
 \examples{
 p <- 3
@@ -50,6 +57,7 @@ experiment <- replicate(Ntype, {
 }, simplify = FALSE
 )
 expr_data <- mapply(function(x) x$data, experiment, SIMPLIFY = FALSE)
+
 Xref <- reference_distribution(p, 10^5, 10^3)
 # Dimension reduction should be performed at this step if necessary.
 # Dimension should preferably be reduced to 3,4 or 5 to take maximum advantage of the time saving.

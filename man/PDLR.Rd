@@ -7,15 +7,20 @@
 PDLR(X1, X2, K = 1)
 }
 \arguments{
-\item{X1}{A matrix of points, with each row corresponding to a point's coordinates in a multi-dimensional real space.}
+\item{X1}{A matrix of points, with each row corresponding to a point's
+coordinates in a multi-dimensional real space.}
 
-\item{X2}{A second matrix of points, to be compared to X1. The number of columns and rows must be equal to those of X1.}
+\item{X2}{A second matrix of points, to be compared to X1. The number of
+columns and rows must be equal to those of X1.}
 
-\item{K}{The number of the first K nearest neighbours (NN) to average over, defaults to K = 1}
+\item{K}{The number of the first K nearest neighbours (NN) to average over,
+defaults to K = 1}
 }
 \value{
-A set of real numbers corresponding to the log-10 ratio of the cross NN distances to the self NN distances
+A set of real numbers corresponding to the log-10 ratio of the cross
+NN distances to the self NN distances
 }
 \description{
-Calculates the paired density logratio (PDLR) between two multi-dimensional sets of points
+Calculates the paired density logratio (PDLR) between two multi-dimensional
+sets of points
 }
