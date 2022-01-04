@@ -27,8 +27,8 @@ densitymorph <- function(X1, X2, Xref, K) {
   n2 <- nrow(X2)
   d1 <- PDLR(X1, X2, K)
   d2 <- PDLR(X2, X1, K)
-  w1 <- wasserstein1d(Xref, d1)
-  w2 <- wasserstein1d(Xref, d2)
+  w1 <- transport::wasserstein1d(Xref, d1)
+  w2 <- transport::wasserstein1d(Xref, d2)
   return(c(w1, w2))
   return(R)
 }
