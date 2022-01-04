@@ -15,8 +15,8 @@
 
 
 reference_distribution <- function(dim, Nin, Nout) {
-  G1 <- rmvnorm(Nin, mean = rep(0, dim))
-  G2 <- rmvnorm(Nin, mean = rep(0, dim))
+  G1 <- mvtnorm::rmvnorm(Nin, mean = rep(0, dim))
+  G2 <- mvtnorm::rmvnorm(Nin, mean = rep(0, dim))
   Xref <- PDLR(G1, G2, K = 1)
   Xref <- quantile(Xref, seq(0, 1, length.out = Nout))
   return(Xref)

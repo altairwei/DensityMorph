@@ -11,5 +11,5 @@ Description: This is a package for exploratory data analysis and visualisation o
 License: GNU General Public License v3.0
 Encoding: UTF-8
 LazyData: true
-Imports: transport, pls, RANN, ade4
+Imports: transport, pls, RANN, ade4, mvtnorm
 RoxygenNote: 7.1.2
